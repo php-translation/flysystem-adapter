@@ -1,6 +1,9 @@
 # Adapter for Flysystem
 
 [![Latest Version](https://img.shields.io/github/release/php-translation/flysystem-adapter.svg?style=flat-square)](https://github.com/php-translation/flysystem-adapter/releases)
+[![Build Status](https://img.shields.io/travis/php-translation/flysystem-adapter.svg?style=flat-square)](https://travis-ci.org/php-translation/flysystem-adapter)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/php-translation/flysystem-adapter.svg?style=flat-square)](https://scrutinizer-ci.com/g/php-translation/flysystem-adapter)
+[![Quality Score](https://img.shields.io/scrutinizer/g/php-translation/flysystem-adapter.svg?style=flat-square)](https://scrutinizer-ci.com/g/php-translation/flysystem-adapter)
 [![Total Downloads](https://img.shields.io/packagist/dt/php-translation/flysystem-adapter.svg?style=flat-square)](https://packagist.org/packages/php-translation/flysystem-adapter)
 
 This is an PHP-translation adapter for [Flysystem](https://flysystem.thephpleague.com/).
