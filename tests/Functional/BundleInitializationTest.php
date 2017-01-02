@@ -11,10 +11,9 @@
 
 namespace Translation\PlatformAdapter\Flysystem\Tests\Functional;
 
-use Http\HttplugBundle\HttplugBundle;
 use Nyholm\BundleTest\BaseBundleTestCase;
 use Translation\PlatformAdapter\Flysystem\Bridge\Symfony\TranslationAdapterFlysystemBundle;
-use Translation\PlatformAdapter\Flysystem\Flysystem;
+use Translation\SymfonyStorage\FileStorage;
 
 class BundleInitializationTest extends BaseBundleTestCase
 {
@@ -26,13 +25,13 @@ class BundleInitializationTest extends BaseBundleTestCase
     public function testRegisterBundle()
     {
         $kernel = $this->createKernel();
-        $kernel->addBundle(HttplugBundle::class);
+        $kernel->addConfigFile(__DIR__.'/config.yml');
 
         $this->bootKernel();
         $container = $this->getContainer();
 
-        $this->assertTrue($container->has('php_translation.adapter.flysystem'));
-        $service = $container->get('php_translation.adapter.flysystem');
-        $this->assertInstanceOf(Flysystem::class, $service);
+        $this->assertTrue($container->has('php_translation.adapter.flysystem.foo'));
+        $service = $container->get('php_translation.adapter.flysystem.foo');
+        $this->assertInstanceOf(FileStorage::class, $service);
     }
 }

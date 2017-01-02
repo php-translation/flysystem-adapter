@@ -1,0 +1,16 @@
+
+translation_adapter_flysystem:
+  filesystems:
+    foo:
+      flysystem_service: 'foobar.service_id'
+      path: 'path/to/trans'
+
+services:
+  foobar.service_id:
+    class: League\Flysystem\Filesystem
+    arguments: ['@foobar.adapter']
+
+  foobar.adapter:
+    class: League\Flysystem\Adapter\Local
+    arguments: ['foo']
+
