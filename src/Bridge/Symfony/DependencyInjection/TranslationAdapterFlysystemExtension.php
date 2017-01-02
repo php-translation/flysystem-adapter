@@ -34,8 +34,8 @@ class TranslationAdapterFlysystemExtension extends Extension
         $configuration = new Configuration($container);
         $config = $this->processConfiguration($configuration, $configs);
 
-        foreach ($config['filesystems'] as $data) {
-            $baseServiceId = 'php_translation.adapter.flysystem.'.$data['name'];
+        foreach ($config['filesystems'] as $name => $data) {
+            $baseServiceId = 'php_translation.adapter.flysystem.'.$name;
             $flysytemServiceId = $data['flysystem_service'];
 
             $dumperDef = $container->register($baseServiceId.'.dumper', XliffFileDumper::class);
@@ -46,14 +46,17 @@ class TranslationAdapterFlysystemExtension extends Extension
             $xlfLoaderDef = $container->register($baseServiceId.'.xlf_loader', XliffFileLoader::class);
             $xlfLoaderDef->setPublic(false)->addArgument(new Reference($flysytemServiceId));
             $loaderDef = $container->register($baseServiceId.'.loader', TranslationLoader::class);
-            $loaderDef->setPublic(false)->addMethodCall('addLoader', ['xlf', $xlfLoaderDef]);
+            $loaderDef
+                ->setPublic(false)
+                ->addArgument(new Reference($flysytemServiceId))
+                ->addMethodCall('addLoader', ['xlf', $xlfLoaderDef]);
 
             // Register our file storage.
             $fileStorageDef = $container->register($baseServiceId, FileStorage::class);
             $fileStorageDef
                 ->addArgument($writerDef)
                 ->addArgument($loaderDef)
-                ->addArgument($data['path']);
+                ->addArgument([$data['path']]);
         }
     }
 }

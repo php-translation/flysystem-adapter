@@ -28,7 +28,7 @@ class Configuration implements ConfigurationInterface
         $root = $treeBuilder->root('translation_adapter_flysystem');
 
         $root->children()
-            ->scalarNode('filesystems')
+            ->arrayNode('filesystems')
             ->useAttributeAsKey('name')
             ->prototype('array')
             ->children()
