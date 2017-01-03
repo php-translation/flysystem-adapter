@@ -28,7 +28,7 @@ use Symfony\Component\Translation\Exception\RuntimeException;
  * @author Michel Salib <michelsalib@hotmail.com>
  * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
-class FlysystemXliffDumper extends XliffFileDumper
+final class FlysystemXliffDumper extends XliffFileDumper
 {
     /**
      * @var Filesystem
