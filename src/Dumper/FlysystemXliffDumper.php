@@ -11,7 +11,7 @@
 
 namespace Translation\PlatformAdapter\Flysystem\Dumper;
 
-use Symfony\Component\Translation\Dumper\DumperInterface;
+use Symfony\Component\Translation\Dumper\XliffFileDumper;
 use Symfony\Component\Translation\MessageCatalogue;
 use Symfony\Component\Translation\Exception\InvalidArgumentException;
 use League\Flysystem\Filesystem;
@@ -27,7 +27,7 @@ use Symfony\Component\Translation\Exception\RuntimeException;
  * @author Michel Salib <michelsalib@hotmail.com>
  * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
-abstract class FileDumper implements DumperInterface
+final class FlysystemXliffDumper extends XliffFileDumper
 {
     /**
      * @var Filesystem
@@ -108,24 +108,6 @@ abstract class FileDumper implements DumperInterface
             $this->filesystem->write($fullpath, $this->formatCatalogue($messages, $domain, $options));
         }
     }
-
-    /**
-     * Transforms a domain of a message catalogue to its string representation.
-     *
-     * @param MessageCatalogue $messages
-     * @param string           $domain
-     * @param array            $options
-     *
-     * @return string representation
-     */
-    abstract public function formatCatalogue(MessageCatalogue $messages, $domain, array $options = []);
-
-    /**
-     * Gets the file extension of the dumper.
-     *
-     * @return string file extension
-     */
-    abstract protected function getExtension();
 
     /**
      * Gets the relative file path using the template.

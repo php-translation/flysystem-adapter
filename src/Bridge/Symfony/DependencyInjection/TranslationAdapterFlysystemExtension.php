@@ -15,9 +15,9 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Translation\Writer\TranslationWriter;
-use Translation\PlatformAdapter\Flysystem\Dumper\XliffFileDumper;
+use Translation\PlatformAdapter\Flysystem\Dumper\FlysystemXliffDumper;
 use Translation\PlatformAdapter\Flysystem\Flysystem;
-use Translation\PlatformAdapter\Flysystem\Loader\XliffFileLoader;
+use Translation\PlatformAdapter\Flysystem\Loader\FlysystemXliffLoader;
 use Translation\PlatformAdapter\Flysystem\TranslationLoader;
 use Translation\SymfonyStorage\FileStorage;
 
@@ -38,12 +38,12 @@ class TranslationAdapterFlysystemExtension extends Extension
             $baseServiceId = 'php_translation.adapter.flysystem.'.$name;
             $flysytemServiceId = $data['flysystem_service'];
 
-            $dumperDef = $container->register($baseServiceId.'.dumper', XliffFileDumper::class);
+            $dumperDef = $container->register($baseServiceId.'.dumper', FlysystemXliffDumper::class);
             $dumperDef->setPublic(false)->addMethodCall('setFilesystem', [new Reference($flysytemServiceId)]);
             $writerDef = $container->register($baseServiceId.'.writer', TranslationWriter::class);
             $writerDef->setPublic(false)->addMethodCall('addDumper', ['xlf', $dumperDef]);
 
-            $xlfLoaderDef = $container->register($baseServiceId.'.xlf_loader', XliffFileLoader::class);
+            $xlfLoaderDef = $container->register($baseServiceId.'.xlf_loader', FlysystemXliffLoader::class);
             $xlfLoaderDef->setPublic(false)->addArgument(new Reference($flysytemServiceId));
             $loaderDef = $container->register($baseServiceId.'.loader', TranslationLoader::class);
             $loaderDef
