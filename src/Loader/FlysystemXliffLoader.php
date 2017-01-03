@@ -22,7 +22,7 @@ use Translation\SymfonyStorage\Loader\XliffLoader;
  *
  * @author Tobias Nyholm <tobias.nyholm@gmail.com>
  */
-final class XliffFileLoader extends XliffLoader
+final class FlysystemXliffLoader extends XliffLoader
 {
     /**
      * @var Filesystem
