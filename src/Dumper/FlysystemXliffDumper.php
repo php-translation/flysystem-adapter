@@ -11,7 +11,6 @@
 
 namespace Translation\PlatformAdapter\Flysystem\Dumper;
 
-use Symfony\Component\Translation\Dumper\DumperInterface;
 use Symfony\Component\Translation\Dumper\XliffFileDumper;
 use Symfony\Component\Translation\MessageCatalogue;
 use Symfony\Component\Translation\Exception\InvalidArgumentException;
