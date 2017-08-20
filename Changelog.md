@@ -2,6 +2,12 @@
 
 The change log describes what is "Added", "Removed", "Changed" or "Fixed" between each release. 
 
+## 0.2.1
+
+### Changed
+
+- Bumped version of `php-translation/symfony-storage`
+
 ## 0.2.0
 
 ### Changed
