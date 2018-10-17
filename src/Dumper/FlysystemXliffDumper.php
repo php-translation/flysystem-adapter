@@ -105,7 +105,7 @@ final class FlysystemXliffDumper extends XliffFileDumper
                 }
             }
             // save file
-            $this->filesystem->write($fullpath, $this->formatCatalogue($messages, $domain, $options));
+            $this->filesystem->put($fullpath, $this->formatCatalogue($messages, $domain, $options));
         }
     }
 
