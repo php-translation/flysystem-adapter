@@ -68,8 +68,12 @@ final class TranslationLoader implements \Translation\SymfonyStorage\Translation
         foreach ($this->loaders as $format => $loader) {
             // load any existing translation files
             $extension = $catalogue->getLocale().'.'.$format;
-            $files = $this->filesystem->listFiles($directory, true);
+            $files = $this->filesystem->listContents($directory, true);
             foreach ($files as $file) {
+                if ('file' !== $file['type']) {
+                    continue;
+                }
+
                 $path = $file['path'];
                 $filename = $this->basename($path);
                 $domain = substr($filename, 0, -1 * strlen($extension) - 1);
